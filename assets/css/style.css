@@ -1,0 +1,114 @@
+* {
+    font-family: Arial, Helvetica, sans-serif;
+    color: #272643;
+}
+
+body {
+    border: solid black 1px;
+    margin: 20px 5%;
+    padding: 10px;
+    height: 700px;
+}
+
+header {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    /* border-bottom: solid 10px #15A1E1; */
+}
+
+header > *{
+    margin: 10px;
+    font-size: 125%;
+    padding: 10px;
+}
+
+header a {
+    color: purple;
+}
+
+#container {
+    margin: 50px 10% 20px;
+    display: flex;
+    flex-direction: column;
+}
+
+#container > * {
+    margin: 20px 5%;
+    align-self: center;
+}
+
+main #start {
+    margin: 20px 5%;
+    align-self: flex-start;
+}
+
+#title {
+    font-size: 175%;
+    font-weight: bold;
+}
+
+#content {
+    font-size: 125%;
+    text-align: justify;
+}
+
+button {
+    background-color: #15A1E1;
+    background-color: black;
+    color: white;
+    border: solid black 1px;
+    border-radius: 5px;
+    padding: 10px 40px;
+    font-size: 125%;
+    font-weight: bolder;
+}
+
+#button1, #button2, #button3, #button4, #restart, #clearScores {
+    align-self: start;
+}
+
+#form {
+    font-size: 150%;
+}
+
+#submit {
+    font-size: 100%;
+    margin: 20px;
+}
+
+footer {
+    text-align: center;
+    font-size: 150%;
+}
+
+button:hover {
+    box-shadow: inset 0px 0px 0px, 0 0 1px purple;
+    background-color: purple;
+}
+
+@media screen and (min-width: 768px){
+    header {
+        justify-content: space-between;
+    }
+    
+    #container {
+        margin: 75px 20% 20px;
+    }
+    #content {
+        text-align: left;
+    }
+}
+
+@media screen and (min-width: 992px){
+    header {
+        justify-content: space-between;
+    }
+    #container {
+        margin: 75px 20% 20px;
+    }
+    #content {
+        text-align: left;
+    }
+}
