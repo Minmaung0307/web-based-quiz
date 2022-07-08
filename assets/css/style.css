@@ -57,11 +57,13 @@ header a {
 
 #title {
     font-size: 175%;
-    font-weight: bold;
+    /* font-weight: bold; */
+    color: rgb(8, 8, 75);
 }
 
 #content {
     font-size: 125%;
+    color: rgb(8, 8, 75);
 }
 
 button {
@@ -89,8 +91,9 @@ button {
 }
 
 hr { 
-    width: 500px;
+    width: 90%;
     display: none;
+    border-color: skyblue;
 }
 
 footer {
