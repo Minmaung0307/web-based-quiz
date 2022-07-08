@@ -7,7 +7,7 @@ body {
     border: solid black 1px;
     margin: 20px 5%;
     padding: 10px;
-    height: 700px;
+    height: auto;
 }
 
 header {
@@ -34,15 +34,26 @@ header a {
     flex-direction: column;
 }
 
+/* #question {
+    margin: 50px 10% 20px;
+    display: flex;
+    flex-direction: column;
+} */
+
 #container > * {
     margin: 20px 5%;
     align-self: center;
 }
 
-main #start {
+/* #question button {
+    margin: 7px 5%;
+    align-self: center;
+} */
+
+/* main #start {
     margin: 20px 5%;
     align-self: flex-start;
-}
+} */
 
 #title {
     font-size: 175%;
@@ -51,12 +62,11 @@ main #start {
 
 #content {
     font-size: 125%;
-    text-align: justify;
 }
 
 button {
     background-color: #15A1E1;
-    background-color: black;
+    background-color: rgb(79, 4, 79);
     color: white;
     border: solid black 1px;
     border-radius: 5px;
@@ -78,16 +88,30 @@ button {
     margin: 20px;
 }
 
+hr { 
+    width: 500px;
+    display: none;
+}
+
 footer {
-    text-align: center;
-    font-size: 150%;
+    text-align: left;
+    font-size: 170%;
+}
+
+#answer {
+    align-self: flex-start;
+    font-style: italic;
 }
 
 button:hover {
-    box-shadow: inset 0px 0px 0px, 0 0 1px purple;
-    background-color: purple;
+    box-shadow: inset 0px 0px 0px, 0 0 1px rgb(188, 86, 188);
+    background-color: rgb(164, 56, 164);
 }
 
+#initials {
+    background-color: rgb(179, 98, 179);
+    color: white;
+}
 @media screen and (min-width: 768px){
     header {
         justify-content: space-between;

@@ -7,6 +7,7 @@ var title = document.querySelector("#title");
 var content = document.querySelector("#content");
 var start = document.querySelector("#start");
 var answer = document.querySelector("#answer");
+var line = document.querySelector("hr");
 
 // Structure of questions
 class Question {
@@ -67,7 +68,8 @@ function questionLoop () {
     var numOfOptions = questionList[0].options.length;
     for(var i = 0; i < numOfOptions; i++) {
         var option = document.createElement("button");
-        container.appendChild(option);
+        // container.appendChild(option);
+        container.insertBefore(option, container.children[3 + i]);
         optionList.push(option);
         option.setAttribute("id", `button${i + 1}`);
     }
@@ -109,13 +111,15 @@ function writeAnswer(event) {
     if(event !== undefined) {
         if(event.currentTarget.textContent === questionList[currentQues - 1].answer) {
             isCorrect = true;
-            answer.textContent = "Correct";
-            answer.setAttribute("style", "color: green");
+            line.style.display = "block";
+            answer.textContent = "Correct!";
+            answer.setAttribute("style", "color: grey");
             score += 10;
         } else {
             isCorrect = false;
-            answer.textContent = "Incorrect";
-            answer.setAttribute("style", "color: red");
+            line.style.display = "block";
+            answer.textContent = "Incorrect!";
+            answer.setAttribute("style", "color: grey");
             if(timeLeft > 10) {
                 timeLeft -= 10;
             } else {
@@ -141,6 +145,7 @@ function clearAnswer() {
     } else {
         isClearingAnswer = true;
         clearingAnswerCode = setTimeout(function() {
+            line.style.display = "none";
             answer.textContent = "";
             isClearingAnswer = false;
         }, 3000);
@@ -182,7 +187,8 @@ function clearOptions() {
 // Listens for click on submit 
 function inputFields() {
     var initialsForm = document.createElement("form");
-    container.appendChild(initialsForm);
+    // container.appendChild(initialsForm);
+    container.insertBefore(initialsForm, container.children[3]);
     initialsForm.setAttribute("id", "form");
 
     var label = document.createElement("label");
@@ -195,7 +201,6 @@ function inputFields() {
 
     var submit = document.createElement("button");
     initialsForm.appendChild(submit);
-
     submit.setAttribute("id", "submit");
     submit.textContent = "Submit";
 
@@ -281,7 +286,7 @@ function showScores() {
 // the contents of the array are printed through a loop
 function writeScores() {
     content.textContent = "";
-    content.setAttribute("style", "white-space: pre-wrap; font-size: 150%");
+    content.setAttribute("style", "white-space: pre-wrap; font-size: 150%; background-color: lightgrey; width: 550px");
     if(localStorage.getItem("leaderboard") !== null) {
         leaderboard = JSON.parse(localStorage.getItem("leaderboard"));
     }
