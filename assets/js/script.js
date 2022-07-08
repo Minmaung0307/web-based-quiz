@@ -1,4 +1,4 @@
-// JavaScript file for 04-Web-APIs-Challenge
+// ခေါ်သုံးချင်တဲ့ ​html ထဲက element တွေကို variable ကြေညာခြင်း
 // Variables to access html elements
 var scores = document.querySelector("#scores");
 var timer = document.querySelector("#timer");
@@ -9,6 +9,7 @@ var start = document.querySelector("#start");
 var answer = document.querySelector("#answer");
 var line = document.querySelector("hr");
 
+// မေးခွန်းပုံစံတည်ဆောက်ခြင်း
 // Structure of questions
 class Question {
     constructor(question, options, answer) {
@@ -18,9 +19,11 @@ class Question {
     }
 }
 
+//မေးခွန်းများစုစည်းထားခြင်း
 var questionList = [];
 
-// All Questions formatted and put into questionList array
+//တည်ဆောက်ပြီး မေးခွန်းများကို မေးခွန်းစာရင်းပြုစုခြင်း
+//All Questions formatted and put into questionList array
 const options1 = ["1. strings", "2. booleans", "3. alerts", "4. numbers"];
 const question1 = new Question("Commonly used data types DO Not Include:", options1, "3. alerts");
 questionList.push(question1);
@@ -41,7 +44,8 @@ const options5 = ["1. JavaScript", "2. terminal/bash", "3. for loops", "4. conso
 const question5 = new Question("A very useful tool used during development and debugging for printing content to the debugger is:", options5, "4. console.log");
 questionList.push(question5);
 
-// Variables for question loop functions
+//မေးခွန်းများနှင့်ပတ်သက်၍ မေးခြင်း ဖြေခြင်း အမှတ်ပေးခြင်းစသည်များ ကြေညာခြင်း 
+//Variables for question loop functions
 var optionList = [];
 var currentQues = 0;
 var score = 0;
@@ -53,13 +57,15 @@ var isClearingAnswer = false;
 var clearingAnswerCode = 0;
 var isCorrect = false;
 
-// Init function that makes view scores and start quiz clickable
+//စတင်ဖြေဆိုမူ အမှတ်စာရင်းကြည့်မူများကို အဆင်သင့်ပြင်ထားခြင်း 
+//Init function that makes view scores and start quiz clickable
 function init() {
     start.addEventListener("click", questionLoop);
     scores.addEventListener("click", showScores);
 }
 
-// Makes elements before the quiz started invisible and creates option buttons
+//မေးခွန်းလွှာများကို မမြင်အောင်သိမ်းထားခြင်းနှင့် ရွေးချယ်မေးခွန်းများစတင်ခြင်း 
+//Makes elements before the quiz started invisible and creates option buttons
 function questionLoop () {
     runTimer();
     isQuizOngoing = true;
@@ -76,7 +82,8 @@ function questionLoop () {
     nextQuestion();
 }
 
-// Counts down the timer and ends the quiz if time is zero
+//အချိန်သတ်မှတ်ပေးခြင်းနှင့် အချိန်ပြည့်လျှင် အဖြေလွှာသိမ်းခြင်း 
+//Counts down the timer and ends the quiz if time is zero
 function runTimer () {
     var clock = setInterval(function() {
         timeLeft--;
@@ -91,8 +98,8 @@ function runTimer () {
 }
 
 
-// Checks if you are the last question
-// Either goes to next question or end of quiz
+//နောက်မေးခွန်းကိုဆက်ဖြေမှာလား သို့ မဖြေတော့ဘူးလားကို ရွေးချယ်ခြင်း
+//Checks if you are the last question && Either goes to next question or end of quiz
 function nextQuestion(event) {
     writeAnswer(event);
     if(currentQues < questionList.length) {
@@ -102,7 +109,8 @@ function nextQuestion(event) {
     }
 }
 
-
+//မေးခွန်းများစစ်ဆေးခြင်း၊ မှန်မမှန်စစ်ဆေးခြင်း၊ ကျန်ရှိမေးခွန်းနှင့်အချိန်တိုက်ကြည့်ခြင်း၊ 
+//အချိန်-၁၀-စက္ကန့်တောင်မကျန်လျှင် သုညသို့ပြောင်းထားရန်
 // Checks if you are on the first question 
 // if not it checks the answer from the previous question is correct
 // if answer is incorrect time left is reduced and flashes red
@@ -134,6 +142,7 @@ function writeAnswer(event) {
     }
 }
 
+//အဖြေက သုံးစက္ကန့်သာကြာမြင့်ခြင်း၊ သတ်မှတ်ချိန်စစ်ဆေးခြင်း၊ ကျန်ရှိချိန်ကိုထုတ်ပြခြင်း
 // Clears the the content in the footer after three seconds
 // Checks if a timeout has already been set
 // If it has it clears the previous timeout and calls itself
@@ -152,8 +161,8 @@ function clearAnswer() {
     }
 }
 
-// Changes the title to the next question
-// Changes the options for each button
+//နောက်မေးခွန်းခေါင်းစဥ်ပြောင်းခြင်းနှင့် ရွေးချယ်မူများပြောင်းခြင်း
+// Changes the title to the next question && Changes the options for each button
 function changeQuestion() {
     title.textContent = questionList[currentQues].question;
     for(var i = 0; i < questionList[currentQues].options.length; i++) {
@@ -163,6 +172,8 @@ function changeQuestion() {
     currentQues++;
 }
 
+//အားလုံးဖြေဆိုပြီးနောက် ရွေးချယ်မူများ၊ အမှတ်များဖျောက်ထားခြင်း၊
+//လက်ရှိမေးခွန်းကိုသတ်မှတ်ခြင်းနှင့် ရမှတ်များပေါင်းခြင်း၊ အမည်ထည့်ရန်ပြင်ဆင်ခြင်း
 // Changes title to All Done, clears options and displays score
 // Sets current question and score to zero and creates input fields
 function endOfQuiz() {
@@ -175,6 +186,7 @@ function endOfQuiz() {
     inputFields();
 }
 
+//မေးခွန်းရွေးချယ်မူများအားလုံး ဖယ်ရှားခြင်း
 //Removes option buttons and empties array they were in
 function clearOptions() {
     for(var i = 0; i < optionList.length; i++) {
@@ -183,8 +195,8 @@ function clearOptions() {
     optionList = [];
 }
 
-// Creates the form for entering initials
-// Listens for click on submit 
+//အမည်စာရင်းသွင်းရန်တည်ဆောက်ခြင်းနှင့် အဖြေလွှာအပ်နှံမူ ပြင်ဆင်ခြင်း
+// Creates the form for entering initials && Listens for click on submit 
 function inputFields() {
     var initialsForm = document.createElement("form");
     // container.appendChild(initialsForm);
@@ -211,6 +223,7 @@ function inputFields() {
     submit.addEventListener("click", addScore);
 }
 
+//မေးခွန်းလွှာများ ထပ်မံဝေခြင်းများမဖြစ်စေခြင်း
 // Prevents entry field from reloading page
 function stopReload(event) {
     if(event.key === "Enter") {
@@ -218,6 +231,8 @@ function stopReload(event) {
     }
 }
 
+//နှစ်ခါအပ်နှံခြင်းများကိုရှောင်ရှားခြင်း၊ နာမည်တိုရေးသွင်းမူရှိမရှိစစ်ဆေးခြင်း
+//မေးခွန်းဖြေဆိုခြင်းကိုရုတ်သိမ်းခြင်း၊ နာမည်ဖြည့်သွင်းမူကိုအဆုံးသတ်ခြင်း၊ အမှတ်စာရင်းသိမ်းဆည်းခြင်း
 // Prevents submit from reloading page
 // Checks if initials are in a valid format
 // Lets program now quiz is over and removes the form
@@ -236,8 +251,10 @@ function addScore(event) {
     saveScore(id);
 }
 
+//မေးခွန်းနှင့်အမှတ် သိမ်းထားခြင်းရှိမရှိစစ်ဆေးခြင်း၊ ပြင်ဆင်ဖြည့်စွက်ရှိမရှိစစ်ဆေးခြင်း
+//စုစုပေါင်းရမှတ်ကို စာရင်းပြုသိမ်းထားခြင်း
 // Chacks if there are any scores saved locally
-// If there are is populates them in an array
+// If there are any populates them in an array
 // Adds the score to the array and updates local storage
 function saveScore(id) {
     if(localStorage.getItem("leaderboard") !== null) {
@@ -248,6 +265,8 @@ function saveScore(id) {
     showScores();    
 }
 
+//နာမည်တိုပေးရန် စည်းမျဥ်းသတ်မှတ်ခြင်း၊ မကိုက်ညီပါက သတ်မှတ်စည်းကမ်းကိုထုတ်ပြခြင်း
+//အဆုံးသတ်အပ်နှံခြင်းကို ပြင်ဆင်ခြင်း
 // If an incorrect input is given a message is displayed
 // Sets the submit button to listen for click
 function invalidInput() {
@@ -258,6 +277,8 @@ function invalidInput() {
     submit.addEventListener("click", addScore);
 }
 
+//ဖြေဆိုနေစဥ် ရမှတ်စစ်ဆေးခြင်းများ မပြုလုပ်စေခြင်း၊ စာမေးပွဲကိုသာ အာရုံစိုက်စေခြင်း
+//ခေါင်းစဥ်သစ်မှတ်သားခြင်း၊ ရမှတ်များရေးခြင်း၊ အဆုံးသတ်အတွက်ပြင်ဆင်ခြင်း
 // Checks if quiz is ongoing to prevent being able to check scores during quiz
 // Displays a message is quiz is ongoing.
 // Changes title, writes scores and creates buttons for navigation
@@ -279,6 +300,8 @@ function showScores() {
     }
 }
 
+//စာမေးပွဲဆိုင်ရာများအားလုံးသန့်ရှင်းရေးလုပ်ခြင်း၊ အမှတ်များသိမ်းဆည်းမူများစစ်ဆေးခြင်း၊ ကျန်ရှိပါကသိမ်းဆည်းခြင်း
+//ရမှတ်အားလုံးကို စာမျက်နှာပေါ်ဆုံးထောင့်တစ်ခုမှာထင်ရှားစွာပြသခြင်း၊ အဖြေလွှာများအားလုံးစနစ်တကျထပ်၍သိမ်းခြင်း
 // Empties content box and formats for list
 // Chacks if any scores are stored
 // If there are they are put into an array
@@ -301,6 +324,7 @@ function writeScores() {
     }
 }
 
+//အပ်နှံခြင်းများအတွက်ပြင်ဆင်ထားခြင်းရှိမရှိစစ်ဆေးခြင်းနှင့် အရန်သင့်ပြင်ဆင်ထားခြင်း
 // Checks to see if the buttons have been created already
 // Creates the buttons and sets listeners for a click
 function createEndButtons() {
@@ -320,6 +344,8 @@ function createEndButtons() {
     }
 }
 
+//အပ်နှံခြင်းဆိုင်ရာများဖယ်ရှားခြင်း၊ ခေါင်းစဥ်ခွဲခြားခြင်းနှင့် စာမေးပွဲကိုအဆင်သင့်ပြင်ဆင်ခြင်း
+//စာမေးပွဲစတင်ခြင်းနှင့်အတူ သက်ဆိုင်ရာလုပ်ငန်းများအစပြုခြင်း
 // Removes the current buttons on the screen
 // Sets the title and content to original
 // Makes start button visible, resets variables and runs init function
@@ -333,10 +359,11 @@ function restart() {
     start.setAttribute("style", "display: visible");
     currentQues = 0;
     score = 0;
-    timeLeft = 61;
+    timeLeft = 76;
     init();
 }
 
+//ယာယီအမှတ်စာရင်းများဖျက်ဆီးခြင်းနှင့် ဖျက်ဆီးခြင်းများကို စနစ်တကျသတ်မှတ်ပေးခြင်း
 // Clears local storage and array holding scores
 // Erases content area
 function clearScores() {
